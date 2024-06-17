@@ -2,6 +2,7 @@
 import socket
 from threading import Thread
 from tkinter import *
+from tkinter import filedialog
 from tkinter import ttk
 
 
@@ -26,71 +27,43 @@ def openChatWindow():
     #Client GUI starts here
     window=Tk()
 
-    window.title('Messenger')
-    window.geometry("500x350")
+    window.title('Music Window')
+    window.geometry("300x300")
+    window.configure(bg = "LightSkyBlue")
 
-    global name
+    global selectlabel
     global listbox
     global textarea
     global labelchat
     global text_message
     global filePathLabel
 
-    namelabel = Label(window, text= "Enter Your Name", font = ("Calibri",10))
-    namelabel.place(x=10, y=8)
+    selectlabel = Label(window, text= "Select Song", font = ("Calibri",10))
+    selectlabel.place(x=2, y=1)
 
-    name = Entry(window,width =30,font = ("Calibri",10))
-    name.place(x=120,y=8)
-    name.focus()
-
-    connectserver = Button(window,text="Connect to Chat Server",bd=1, font = ("Calibri",10))
-    connectserver.place(x=350,y=6)
-
-    separator = ttk.Separator(window, orient='horizontal')
-    separator.place(x=0, y=35, relwidth=1, height=0.1)
-
-    labelusers = Label(window, text= "Active Users", font = ("Calibri",10))
-    labelusers.place(x=10, y=50)
-
-    listbox = Listbox(window,height = 5,width = 67,activestyle = 'dotbox', font = ("Calibri",10))
-    listbox.place(x=10, y=70)
+    listbox = Listbox(window,height = 39,width = 10,activestyle = 'dotbox', font = ("Calibri",10))
+    listbox.place(x=10, y=18)
 
     scrollbar1 = Scrollbar(listbox)
     scrollbar1.place(relheight = 1,relx = 1)
     scrollbar1.config(command = listbox.yview)
 
-    connectButton=Button(window,text="Connect",bd=1, font = ("Calibri",10))
-    connectButton.place(x=282,y=160)
+    playButton=Button(window,text="PLAY",width = 10,bd=1, bg = "skyBlue", font = ("Calibri",10))
+    playButton.place(x=30,y=200)
 
-    disconnectButton=Button(window,text="Disconnect",bd=1, font = ("Calibri",10))
-    disconnectButton.place(x=350,y=160)
+    stopButton=Button(window,text="Stop",width = 10,bd=1, bg = "skyBlue", font = ("Calibri",10))
+    stopButton.place(x=200,y=200)
 
-    refresh=Button(window,text="Refresh",bd=1, font = ("Calibri",10))
-    refresh.place(x=435,y=160)
+    uploadButton=Button(window,text="Upload",width = 10,bd=1, bg = "skyBlue", font = ("Calibri",10))
+    uploadButton.place(x=30,y=250)
 
-    labelchat =  Label(window, text= "Chat Window", font = ("Calibri",10))
-    labelchat.place(x=10, y=180) 
+    downloadButton=Button(window,text="Download",width = 10,bd=1, bg = "skyBlue", font = ("Calibri",10))
+    downloadButton.place(x=200,y=250)
 
-    textarea = Text(window, width = 67, height = 6,font = ("Calibri",10))
-    textarea.place(x=10, y = 200)
+    infolabel =  Label(window, text= "", fg = "blue",font = ("Calibri",10))
+    infolabel.place(x=4, y=260) 
 
-    scrollbar2 = Scrollbar(textarea)
-    scrollbar2.place(relx = 1, relheight = 1)
-    scrollbar2.config(command = listbox.yview)
-
-    attach = Button(window,text="Attach & Send",bd=1, font = ("Calibri",10))
-    attach.place(x=10,y=305)
-
-    text_message = Entry(window,width =43,font = ("Calibri",12))
-    text_message.place(x=98,y=306)
-    text_message.pack()
-
-    send = Button(window,text="Send",bd=1, font = ("Calibri",10))
-    send.place(x=450,y=305)
-
-    filePathLabel =  Label(window, text= "", font = ("Calibri",10), fg = "blue")
-    filePathLabel.place(x=10, y=330) 
-    
+           
     window.mainloop()
 
 
